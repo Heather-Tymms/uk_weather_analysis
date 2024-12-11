@@ -163,4 +163,4 @@ cython_debug/
 
 
 # not adding inpt files into the repo
-input/
+input/*
