@@ -1,10 +1,14 @@
 # Main running script
 
 from source.clean import create_table
-from source.calculation import calc_monthly_average_per_decade
+from source.location import Location
 
-heathrow_filename = "Heathrow London Airport.txt"
+# from source.scrape import scrape_location_data, url_overview
 
-df_heatherow = create_table(heathrow_filename)
+# this line only needs to be used once to populate the webpage table urls
+# data = scrape_location_data(url_overview)
 
-heathrow_decade_monthly_avg = calc_monthly_average_per_decade(df_heatherow)
+
+# create table
+Location()
+create_table(location=Location.CAMBRIDGE_NIAB)

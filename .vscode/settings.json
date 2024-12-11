@@ -1,0 +1,14 @@
+{
+    "editor.formatOnSave": true, // format all files when saved (CTRL+S)
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // use prettier formatter by default (if the file extension is supported)
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff", // use Ruff for .py files
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml" // format .toml files
+    },
+    "editor.fontSize": 16
+}
