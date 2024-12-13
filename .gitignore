@@ -162,5 +162,5 @@ cython_debug/
 #.idea/
 
 
-# not adding inpt files into the repo
+# not adding input files into the repo
 input/*
