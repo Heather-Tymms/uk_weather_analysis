@@ -56,10 +56,10 @@ def scrape_location_data(url: str) -> None:
     df.to_csv(input_location_filepath, index=False)
 
 
-def read_location_page(location_name: "Location") -> pd.DataFrame:
+def read_location_page(location_url: str) -> pd.DataFrame:
     """Read specific txt  file on a web page."""
     df = pd.read_csv(
-        location_name.value,
+        location_url,
         delim_whitespace=True,
         skiprows=7,
         names=weather_data_headers,
@@ -68,24 +68,4 @@ def read_location_page(location_name: "Location") -> pd.DataFrame:
     return df
 
 
-def find_web_link(name: str) -> str:
-    """Find web link from name."""
 
-    # find df
-    df = pd.read_csv(input_location_filepath)
-
-    web_link = df.loc[
-        df["Name"].str.upper().str.replace("-", "_").str.replace("\s", "_", regex=True)
-        == name,
-        "Data",
-    ]
-    if len(web_link) == 1:
-        return web_link.iloc[0]
-
-    if len(web_link) > 1:
-        error_message = f"There are more than one name with {name}. Please check the names in the Location Class"
-
-    if len(web_link) == 0:
-        error_message = f"There are no names found like {name}. Please check the names in the Location Class"
-
-    raise ValueError(error_message)
