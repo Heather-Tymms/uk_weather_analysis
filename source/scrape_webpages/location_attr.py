@@ -1,18 +1,21 @@
 """Location attributes."""
 
+from pathlib import Path
 from typing import TYPE_CHECKING, Literal
 
 import pandas as pd
 
-from source.scrape_webpages.scrape import input_location_filepath
-
 if TYPE_CHECKING:
-    from .location import Location
+    from location import Location
     from typing import Any, Self
+
+location_filename = "location_webpages"
+input_location_filepath = Path.cwd() / "input" / f"{location_filename}.csv"
 
 
 class LocationAttributes():
     country = "United Kingdom"
+    df = pd.DataFrame()
 
     def __init__(self:"Self", location:"Location")-> None:
         """Initialise instance."""
@@ -39,7 +42,7 @@ class LocationAttributes():
 
         # Find answer from table
         output = df.loc[
-            df["Name"].str.upper().str.replace("-", "_").str.replace("\s", "_", regex=True)
+            df["Name"].str.upper().str.replace("-", "_").str.replace(" ", "_")
             == name,
             column_name,
         ]

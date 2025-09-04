@@ -3,10 +3,10 @@ from typing import TYPE_CHECKING
 
 import pandas as pd
 
-from source.scrape_webpages.scrape import read_location_page, weather_data_headers
+from scrape_webpages.scrape import read_location_page, weather_data_headers
 
 if TYPE_CHECKING:
-    from source.location_info.location import Location
+    from source.scrape_webpages.location import Location
 
 
 def create_table(location_url: str) -> pd.DataFrame:
