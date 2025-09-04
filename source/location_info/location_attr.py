@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class LocationAttributes():
-    country = "England"
+    country = "United Kingdom"
 
     def __init__(self:"Self", location:"Location")-> None:
         """Initialise instance."""

@@ -6,7 +6,7 @@ import pandas as pd
 from source.scrape_webpages.scrape import read_location_page, weather_data_headers
 
 if TYPE_CHECKING:
-    from source.location import Location
+    from source.location_info.location import Location
 
 
 def create_table(location_url: str) -> pd.DataFrame:
@@ -27,10 +27,10 @@ def create_table(location_url: str) -> pd.DataFrame:
             df[c] = df[c].astype("float")
 
     # clean "is_predicted" column
-    df.loc[df["is_predicted"].notnull(),"is_predicted"] = 1
-    df.loc[df["is_predicted"].isnull(),"is_predicted"] = 0
+    df.loc[df["is_predicted"].notnull(),"is_predicted"] = True
+    df.loc[df["is_predicted"].isnull(),"is_predicted"] = False
 
     # find decade
-    df["decade"] = df["year"].astype("str").str[:3] + "0"
+    df["decade"] = int(df["year"].astype("str").str[:3] + "0")
 
     return df

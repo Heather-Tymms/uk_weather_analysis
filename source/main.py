@@ -2,8 +2,8 @@
 
 from source.calculation import calc_monthly_attribute_per_decade, calc_min_max_per_decade
 from source.clean import create_table
-from source.location import Location
-from source.location_attr import LocationAttributes
+from source.location_info.location import Location
+from source.location_info.location_attr import LocationAttributes
 from source.visualisation import create_line_graph
 
 # from source.scrape import scrape_location_data, url_overview

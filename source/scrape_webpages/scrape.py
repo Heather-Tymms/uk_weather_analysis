@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 if TYPE_CHECKING:
-    from source.location import Location
+    from source.location_info.location import Location
 
 url_overview = (
     "https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data"
