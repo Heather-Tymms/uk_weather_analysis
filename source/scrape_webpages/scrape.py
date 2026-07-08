@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 if TYPE_CHECKING:
-    from location import Location
+    pass
 
 url_overview = (
     "https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data"
@@ -66,6 +66,3 @@ def read_location_page(location_url: str) -> pd.DataFrame:
         na_values=["---"],
     )
     return df
-
-
-
