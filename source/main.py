@@ -1,17 +1,17 @@
 """Run the main program to scrape, clean, calculate and visualise the data."""
 
 from source.calculation import (
-    calc_monthly_attribute_per_decade,
     calc_min_max_per_decade,
+    calc_monthly_attribute_per_decade,
 )
 from source.clean import create_table
+from source.location import Location
+from source.location_attr import LocationAttributes
 from source.scrape_webpages.scrape import (
     input_location_Filepath,
     scrape_location_data,
     url_overview,
 )
-from source.scrape_webpages.location import Location
-from source.scrape_webpages.location_attr import LocationAttributes
 from source.visualisation import create_line_graph
 
 # check if we have already scraped the data, if not scrape it and save to csv

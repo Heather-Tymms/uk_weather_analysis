@@ -6,11 +6,12 @@ from typing import TYPE_CHECKING, Literal
 import pandas as pd
 
 if TYPE_CHECKING:
-    from location import Location
     from typing import Any, Self
 
+    from source.location import Location
+
 location_filename = "location_webpages"
-input_location_filepath = Path.cwd() / "input" / f"{location_filename}.csv"
+input_location_filepath = Path.cwd().parent / "input" / f"{location_filename}.csv"
 
 
 class LocationAttributes:
