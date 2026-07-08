@@ -1,6 +1,6 @@
 """Run the main program to scrape, clean, calculate and visualise the data."""
 
-from source.calculation import (
+from source.calculate_trends import (
     calc_min_max_per_decade,
     calc_monthly_attribute_per_decade,
 )
