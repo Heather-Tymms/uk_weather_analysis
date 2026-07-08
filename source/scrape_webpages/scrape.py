@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 if TYPE_CHECKING:
-    from source.location_info.location import Location
+    pass
 
 url_overview = (
     "https://www.metoffice.gov.uk/research/climate/maps-and-data/historic-station-data"
@@ -17,16 +17,16 @@ url_overview = (
 
 # column names
 location_col_names = ["Name", "Location", "Opened", "Data"]
-weather_data_headers = [
-    "year",
-    "month",
-    "tmax_degC",
-    "tmin_degC",
-    "af_days",
-    "rain_mm",
-    "sun_hours",
-    "is_predicted",
-]
+weather_data_headers = {
+    "year": pd.Int64Dtype(),
+    "month": pd.Int64Dtype(),
+    "tmax_degC": pd.Float64Dtype(),
+    "tmin_degC": pd.Float64Dtype(),
+    "af_days": pd.Float64Dtype(),
+    "rain_mm": pd.Float64Dtype(),
+    "sun_hours": pd.Float64Dtype(),
+    "is_predicted": bool,
+}
 
 # file paths and names
 location_filename = "location_webpages"
@@ -60,12 +60,9 @@ def read_location_page(location_url: str) -> pd.DataFrame:
     """Read specific txt  file on a web page."""
     df = pd.read_csv(
         location_url,
-        delim_whitespace=True,
+        sep=r"\s+",
         skiprows=7,
         names=weather_data_headers,
         na_values=["---"],
     )
     return df
-
-
-

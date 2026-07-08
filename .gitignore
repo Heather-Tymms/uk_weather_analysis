@@ -163,4 +163,5 @@ cython_debug/
 
 
 # not adding input files into the repo
-input/*
+/input/*
+*/__pycache__/

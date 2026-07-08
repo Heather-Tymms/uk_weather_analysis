@@ -4,6 +4,8 @@ from enum import Enum
 
 
 class Location(Enum):
+    """Locations where weather data is collected."""
+
     ABERPORTH = "ABERPORTH"
     ARMAGH = "ARMAGH"
     BALLYPATRICK_FOREST = "BALLYPATRICK_FOREST"
