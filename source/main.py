@@ -1,6 +1,6 @@
 """Run the main program to scrape the table of weather data required to run the notebooks."""
 
-from source.scrape_webpages.scrape import (
+from source.scrape_webpages.scrape_overview import (
     input_location_filepath,
     scrape_overview_location_data,
     url_overview,
