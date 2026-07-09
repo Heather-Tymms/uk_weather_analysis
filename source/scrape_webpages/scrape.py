@@ -1,5 +1,6 @@
 """functions that and set up overall location data."""
 
+import os
 from io import StringIO
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -30,11 +31,20 @@ weather_data_headers = {
 
 # file paths and names
 location_filename = "location_webpages"
-input_location_filepath = Path.cwd() / "input" / f"{location_filename}.csv"
+input_filepath = Path.cwd().parent.parent / "input"
+input_location_filepath = input_filepath / f"{location_filename}.csv"
 
 
-def scrape_location_data(url: str) -> None:
+def scrape_overview_location_data(url: str) -> None:
     """Get overview table with location and webpages from website."""
+
+    # check if input folder exists, if not create it
+    if not input_filepath.exists():
+        input_filepath.mkdir(parents=True, exist_ok=True)
+
+    # check if we have already scraped the data, if not scrape it and save to csv
+    if input_location_filepath.exists():
+        return
 
     # web scraping - get request from webpage and locate table
     request = requests.get(url=url)
@@ -56,10 +66,30 @@ def scrape_location_data(url: str) -> None:
     df.to_csv(input_location_filepath, index=False)
 
 
-def read_location_page(location_url: str) -> pd.DataFrame:
+def read_location_page(
+    location_name: str, location_url: str, refresh: bool = False
+) -> pd.DataFrame:
     """Read specific txt  file on a web page."""
+    location_filepath = None
+
+    # check if file already exists in input folder
+    location_file = [
+        c
+        for c in os.listdir(input_filepath)
+        if c.endswith(".txt")  # is a text file
+        and c.startswith(location_name.title())  # is the correct location name
+    ]
+
+    # if file exists and refresh is False, use the file in input folder.
+    if not refresh and len(location_file) > 0:
+        location_filepath = input_filepath / location_file[0]
+
+    # choose the data location based on whether we have a file path or a URL
+    data_location = location_filepath or location_url
+
+    # read the data into a pandas dataframe
     df = pd.read_csv(
-        location_url,
+        data_location,
         sep=r"\s+",
         skiprows=7,
         names=weather_data_headers,

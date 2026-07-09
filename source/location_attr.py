@@ -19,6 +19,7 @@ class LocationAttributes:
 
     country = "United Kingdom"
     df = pd.DataFrame()
+    filepath = ""
 
     def __init__(self: "Self", location: "Location") -> None:
         """Initialise instance."""
