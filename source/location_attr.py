@@ -28,16 +28,21 @@ class LocationAttributes:
         self.name = location.value
         self.url = self.find_location_attribute(location.value, "url")
         self.position = self.find_location_attribute(location.value, "co-ordinates")
+        self.opening_year = self.find_location_attribute(location.value, "opening_year")
 
     def find_location_attribute(
         self: "Self",
         location_name: str,
-        location_attribute: Literal["url", "coordinates"],
+        location_attribute: Literal["url", "coordinates", "opening_year"],
     ) -> "Any":
         """Find location attribute from name and attribute name."""
 
         # find what column in the table to look for
-        column_connection = {"url": "Data", "co-ordinates": "Location"}
+        column_connection = {
+            "url": "Data",
+            "co-ordinates": "Location",
+            "opening_year": "Opened",
+        }
         column_name = column_connection[location_attribute]
 
         # find df

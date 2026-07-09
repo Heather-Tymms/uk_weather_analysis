@@ -18,7 +18,7 @@ weather_data_headers = {
 }
 
 # file paths and names
-input_filepath = Path.cwd().parent.parent / "input"
+input_filepath = Path.cwd().parent / "input"
 
 
 def read_location_page(
