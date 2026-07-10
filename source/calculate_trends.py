@@ -8,6 +8,7 @@ def calc_monthly_attribute_per_decade(
     df: pd.DataFrame,
     column_name: Literal["tmax_degC", "tmin_degC", "af_days", "rain_mm", "sun_hours"],
     month_col: Literal["month", "worded_month"] = "month",
+    aggregate_func: Literal["mean", "sum"] = "mean",
 ) -> pd.DataFrame:
     """Calculate monthly average for each decade for a given column name."""
 
@@ -16,7 +17,7 @@ def calc_monthly_attribute_per_decade(
     df_monthly = (
         df_monthly[["decade", month_col, column_name]]
         .groupby(["decade", month_col])
-        .mean()
+        .agg({column_name: aggregate_func})
         .reset_index()
     )
     # pivot the output
